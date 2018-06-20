@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.content{
+    min-height: 520px !important;
+}
+
+thead>tr>th {
+    cursor: pointer;
+}
+
+.ngx-pagination {
+    padding: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px !important;
+    display:inline-block;
+}
+
+.ngx-pagination .current{
+    cursor: pointer !important;
+}
+
+.dropdown-btn{
+    border:1px solid #d2d6de !important;
+    border-radius: 0px !important;
+}

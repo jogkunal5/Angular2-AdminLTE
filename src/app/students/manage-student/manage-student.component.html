@@ -1,0 +1,130 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Manage Student
+        <!-- <small>(List of all available students)</small> -->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Student</a></li>
+        <li class="active">Manage Student</li>
+      </ol>
+    </section>
+
+    
+    <!-- Main content -->
+    <section class="content">
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">List of students</h3>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <i *ngIf="filter">Search by: <b>{{filter}}</b></i>
+              <!-- search form -->
+              <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                      <input type="text" name="search" [(ngModel)]="filter" class="search-box form-control" placeholder="Search...">
+                      <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                  <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                  <i class="fa fa-times"></i>
+                </button> -->
+              </div>
+              <!-- /.search form -->
+            </div>
+            <!-- /.box-header -->
+            
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th (click)="sort('firstName')">First Name
+                          <span class="fa fa-sort" *ngIf="key =='firstName'"></span>
+                      </th>
+                      <th (click)="sort('lastName')">Last Name
+                          <span class="fa fa-sort" *ngIf="key =='lastName'"></span>
+                      </th>                      
+                      <th (click)="sort('motherName')">Mother Name
+                          <span class="fa fa-sort" *ngIf="key =='motherName'"></span>
+                      </th>                      
+                      <th (click)="sort('contact')">Contact
+                          <span class="fa fa-sort" *ngIf="key =='contact'"></span>
+                      </th>
+                      <th (click)="sort('gender')">Gender
+                          <span class="fa fa-sort" *ngIf="key =='gender'"></span>
+                      </th>
+                      <th>Course Details
+                          <span class="fa fa-sort" *ngIf="key =='course'"></span>
+                      </th>                                                                  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let student of studentList | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p };'>
+                      <td>{{student.firstName}}</td>
+                      <td>{{student.lastName}}</td>
+                      <td>{{student.motherName}}</td>                      
+                      <td>{{student.contact}}</td>                      
+                      <td>{{student.gender}}</td>                                            
+                      <td>                          
+                          <button type="button" class="btn btn-sm" (click)="showCourses(student)">
+                            View
+                          </button>     
+                      </td>                      
+                      <td>
+                          <a [routerLink]="['/editstudent', student._id]" class="btn btn-sm btn-primary">
+                            <i  class="fa fa-pencil"></i>
+                          </a>
+                          <button class="btn btn-sm btn-danger" (click)="deleteStudent(student)">
+                              <i  class="fa fa-trash"></i>
+                          </button>
+                      </td>                                          
+                    </tr>                                      
+                  </tbody>           
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+                <pagination-controls class="pull-right" (pageChange)="p = $event"></pagination-controls>
+                <a routerLink="/addstudent" class="btn btn-sm btn-info btn-flat pull-left">
+                  Add Student
+                </a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+  
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+  <!-- BOOTSTRAP MODAL DIALOG FOR COURSES-->
+  
+  <div class="modal fade" id="studCourseModal" tabindex="-1" role="dialog" aria-labelledby="studCourseModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="studCourseModalLabel">Courses joined by <strong>{{studentName}}</strong></h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">              
+              <tr><th>Course Name</th></tr>
+              <tr *ngFor="let course of coursesArr">                
+                <td>{{course.name}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>            
+          </div>
+        </div>
+      </div>
+    </div>

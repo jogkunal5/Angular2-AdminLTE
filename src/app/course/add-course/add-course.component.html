@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Add Course      
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+          <div class="box box-info">
+          
+          <!-- <div class="box-header">
+            <i class="fa fa-plus-circle"></i>
+            <h3 class="box-title">Add Course</h3>
+          </div> -->
+
+          <div class="box-body">
+            <form action="#" method="post">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" [(ngModel)]="newCourse.name" name="name" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label>Stream</label>
+                <input type="text" class="form-control" [(ngModel)]="newCourse.stream" name="stream" placeholder="Stream">
+              </div>
+              <div class="form-group">
+                <label>Fee</label>
+                <input type="number" class="form-control" [(ngModel)]="newCourse.fee" name="fee" placeholder="Fee">
+              </div>
+            </form>
+          </div>
+          <div class="box-footer clearfix">
+            <button type="button" class="btn btn-success" (click)="create()"><i class="fa fa-save"></i>&nbsp;&nbsp;Save
+            </button>
+            <a routerLink="/managecourse" class="btn btn-default pull-right">
+              <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
+            </a>
+          </div>
+        </div>
+
+            
+  </section>
+  <!-- /.content -->
+</div>

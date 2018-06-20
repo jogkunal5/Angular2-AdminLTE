@@ -1,0 +1,90 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Manage Courses
+        <!-- <small>(List of all available courses)</small> -->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Course</a></li>
+        <li class="active">Manage Course</li>
+      </ol>
+    </section>
+
+    
+    <!-- Main content -->
+    <section class="content">
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">List of available courses</h3>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <i *ngIf="filter">Search by: <b>{{filter}}</b></i>
+              <!-- search form -->
+              <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                      <input type="text" name="search" [(ngModel)]="filter" class="search-box form-control" placeholder="Search...">
+                      <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                  <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                  <i class="fa fa-times"></i>
+                </button> -->
+              </div>
+              <!-- /.search form -->
+            </div>
+            <!-- /.box-header -->
+            
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                    <tr>
+                      <th (click)="sort('name')">Course Name
+                          <span class="fa fa-sort" *ngIf="key =='name'"></span>
+                      </th>
+                      <th (click)="sort('stream')">Stream
+                          <span class="fa fa-sort" *ngIf="key =='stream'"></span>
+                      </th>
+                      <th (click)="sort('fee')">Fee
+                          <span class="fa fa-sort" *ngIf="key =='fee'"></span>
+                      </th>
+                      <th>Action</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let course of courseList | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p };'>
+                      <td>{{course.name}}</td>
+                      <td>{{course.stream}}</td>
+                      <td><span class="label label-success">{{course.fee | currency:'INR'}}</span></td>
+                      <td>
+                          <a [routerLink]="['/editcourse', course._id]" class="btn btn-sm btn-primary">
+                            <i  class="fa fa-pencil"></i>
+                          </a>
+                          <button class="btn btn-sm btn-danger" (click)="deleteCourse(course)">
+                              <i  class="fa fa-trash"></i>
+                          </button>
+                      </td>                                          
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <pagination-controls class="pull-right" (pageChange)="p = $event"></pagination-controls>
+              <a routerLink="/addcourse" class="btn btn-sm btn-info btn-flat pull-left">Add Course</a>
+              <!-- <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a> -->
+            </div>
+            <!-- /.box-footer -->
+          </div>
+  
+    </section>
+    <!-- /.content -->
+  </div>
+  
